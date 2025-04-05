@@ -2,7 +2,7 @@
 
 This steps I walks through for testing and containerizing a Spring Boot application using Gradle and Docker.
 
-![](/assets/icons8-java-144.png) ![](/assets/icons8-spring-boot-160.png)  ![](/assets/icons8-docker-96.png) ![](/assets/Gradle.png)
+![](/assets/icons8-java-144.png) ![](/assets/icons8-spring-boot-140.png)  ![](/assets/icons8-docker-96.png) ![](/assets/Gradle.png)
 
 ---
 
