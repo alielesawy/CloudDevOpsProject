@@ -20,3 +20,7 @@ variable "instance_type" {
 variable "security_group_id" {
   type = string
 }
+variable "key_name" {
+  description = "Key pair name for EC2 instances"
+  type        = string
+}

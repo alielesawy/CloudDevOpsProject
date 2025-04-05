@@ -1,10 +1,12 @@
 # modules/ec2/main.tf
 resource "aws_instance" "app" {
-  count         = var.instance_count
-  ami           = "ami-0c02fb55956c7d316" 
-  instance_type = var.instance_type
-  subnet_id     = var.subnet_id
-  vpc_security_group_ids = [var.security_group_id]
+  count                   = var.instance_count
+  ami                     = "ami-084568db4383264d4"  # Ubuntu AMI (us-east-1)
+  instance_type           = var.instance_type
+  subnet_id               = var.subnet_id
+  key_name                = var.key_name
+  vpc_security_group_ids  = [var.security_group_id]
+  associate_public_ip_address = true  # Explicitly assign public IP
   
   tags = {
     Name = "app-instance-${count.index + 1}"

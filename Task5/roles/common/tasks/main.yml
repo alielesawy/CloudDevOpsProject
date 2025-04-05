@@ -1,0 +1,34 @@
+---
+- name: Update package cache
+  apt:
+    update_cache: yes
+
+- name: Install common packages
+  apt:
+    name:
+      - git
+      - openjdk-17-jdk  # Updated to Java 17
+    state: present
+
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add ubuntu user to docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
+
+- name: Set JAVA_HOME environment variable
+  lineinfile:
+    path: /etc/environment
+    line: 'JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64'  # Updated to Java 17
+    state: present

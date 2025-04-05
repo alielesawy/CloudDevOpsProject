@@ -9,7 +9,7 @@ terraform {
   
   # S3 Backend for state management
   backend "s3" {
-    bucket         = "terraform-state-bucket-ivolve0123"
+    bucket         = "terraform-state-bucket-ivolve987"
     key            = "state/terraform.tfstate"
     region         = "us-east-1"
     use_lockfile   = true
@@ -35,6 +35,7 @@ module "ec2" {
   vpc_id            = module.vpc.vpc_id
   subnet_id         = module.vpc.subnet_id
   instance_count    = 2
-  instance_type     = "t2.micro"
+  instance_type     = "t3.medium"
   security_group_id = module.vpc.security_group_id
+  key_name          = "my-key-pair"
 }

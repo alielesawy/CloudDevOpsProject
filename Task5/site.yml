@@ -1,0 +1,9 @@
+# site.yml
+---
+- name: Configure EC2 instances
+  hosts: tag_Name_app_instance_*
+  become: yes  # Run as sudo
+  roles:
+    - common
+    - jenkins
+    - sonarqube

@@ -1,0 +1,10 @@
+plugin: aws_ec2
+regions:
+  - us-east-1  # Match your Terraform region
+filters:
+  instance-state-name: running
+  tag:Name: app-instance-*  # Matches Terraform EC2 tags
+keyed_groups:
+  - key: tags.Name
+    prefix: tag_Name_
+    separator: ""

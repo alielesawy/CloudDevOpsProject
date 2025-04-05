@@ -10,8 +10,9 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "public" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = var.subnet_cidr
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = var.subnet_cidr
+  map_public_ip_on_launch = true  # Enable auto-assign public IP
   
   tags = {
     Name = "public-subnet"
@@ -32,6 +33,9 @@ resource "aws_route_table" "public" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.gw.id
+  }
+  tags = {
+    Name = "public-route-table"
   }
 }
 
@@ -54,6 +58,12 @@ resource "aws_security_group" "app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+    ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
   
